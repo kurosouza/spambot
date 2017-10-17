@@ -39,6 +39,9 @@ app.configure(rest());
 app.configure(socketio());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use(feathers.static(path.join(__dirname, 'build')));
+
 app.configure(services);
 app.use(handler);
 
@@ -50,8 +53,6 @@ Message.sync({ force: true }).then(() => {
     console.log('Created message.');
   });
 });
-
-app.use(feathers.static(__dirname + 'build'));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
