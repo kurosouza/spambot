@@ -1,3 +1,4 @@
+const express = require('express');
 const feathers = require('feathers');
 const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
@@ -39,9 +40,6 @@ app.configure(rest());
 app.configure(socketio());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-
-app.use(feathers.static(path.join(__dirname, 'build')));
-
 app.configure(services);
 app.use(handler);
 
@@ -54,7 +52,7 @@ Message.sync({ force: true }).then(() => {
   });
 });
 
-const port = process.env.PORT || 5000;
+const port =process.env.port || 5000;
 app.listen(port, () => {
-    console.log('starting API server ..');
+    console.log(`starting API server on ${port} ..`);
 });
