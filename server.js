@@ -42,9 +42,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 // serve index.html + js assets from 'build' in production
-if(process.env.NODE_ENV === 'production') {
-  app.use(feathers.static(path.join(__dirname, 'build')));
-}
+//if(process.env.NODE_ENV === 'production') {
+app.use(feathers.static(path.join(__dirname, 'build')));
+//}
 
 app.configure(services);
 app.use(handler);
